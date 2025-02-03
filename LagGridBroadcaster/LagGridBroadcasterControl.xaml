@@ -1,0 +1,57 @@
+<UserControl x:Class="LagGridBroadcaster.LagGridBroadcasterControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LagGridBroadcaster"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:LagGridBroadcasterConfig/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Labels"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="Buttons"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" Text="Broadcast top X grids" Margin="5"/>
+        <TextBox Grid.Row ="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Top}" Margin="5"/>
+        
+        <TextBlock Grid.Row ="1" Grid.Column="0" VerticalAlignment="Center" Text="Only broadcast grids which take time greater than(us)" Margin="5"/>
+        <TextBox Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding MinUs}" Margin="5"/>
+
+        <TextBlock Grid.Row ="2" Grid.Column="0" VerticalAlignment="Center" Text="Only broadcast grids when faction member is in radius of(m)(zero for infinity)" Margin="5"/>
+        <TextBox Grid.Row ="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FactionMemberDistance}" Margin="5"/>
+
+        <TextBlock Grid.Row ="3" Grid.Column="0" VerticalAlignment="Center" Text="Send faction top X grids to faction members(zero for disable)" Margin="5"/>
+        <TextBox Grid.Row ="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FactionTop}" Margin="5"/>
+        
+        <TextBlock Grid.Row ="4" Grid.Column="0" VerticalAlignment="Center" Text="Send the result of the grid currently in control to player" Margin="5"/>
+        <CheckBox Grid.Row ="4" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding SendResultOfControllingGrid}" Margin="5"/>
+        
+        <TextBlock Grid.Row ="5" Grid.Column="0" VerticalAlignment="Center" Text="No output while result is empty" Margin="5"/>
+        <CheckBox Grid.Row ="5" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding NoOutputWhileEmptyResult}" Margin="5"/>
+        
+        <TextBlock Grid.Row ="6" Grid.Column="0" VerticalAlignment="Center" Text="Write measure result to file" Margin="5"/>
+        <CheckBox Grid.Row ="6" Grid.Column="1" Grid.ColumnSpan="2" IsChecked="{Binding WriteToFile}" Margin="5"/>
+        
+        <TextBlock Grid.Row ="7" Grid.Column="0" VerticalAlignment="Center" Text="Result file name" Margin="5"/>
+        <TextBox Grid.Row ="7" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ResultFileName}" IsEnabled="{Binding WriteToFile}" Margin="5"/>
+
+        <Button Grid.Row="8" Grid.Column="2" Content="Save Config" Click="SaveButton_OnClick" Margin="5"/>
+    </Grid>
+</UserControl>
